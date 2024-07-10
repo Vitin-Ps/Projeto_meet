@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Projeto de Meet</title>
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  </head>
+  <body>
+    <div class="main_container">
+      <div class="painel_container">
+        <div class="painel_header_container">
+          <img src="ultils/images/logo.png" alt="logo" />
+          <button onclick="mostrarPainel(this)"></button>
+        </div>
+        <div class="painel_main_container">
+          <div class="cod_unico_container">
+            <p>Seu código:</p>
+            <div class="cod_unico_valor_container">
+              <p id="cod_unico_valor" class="cod_unico_valor">DDDDDDDD</p>
+              <button id="btn_copiar_cod_unico" class="btn_copiar_cod_unico"><i class="fas fa-clipboard"></i></button>
+            </div>
+          </div>
+
+          <div class="cod_unico_conexao_container">
+            <p>Código Único:</p>
+            <input type="text" class="cod_unico_input" id="cod_unico_input" />
+            <div class="cod_unico_conexao_btn_container">
+              <button class="conexao_btn" id="cod_unico_chat_btn">
+                <i class="fas fa-comment"></i>
+                <span>Chat</span>
+              </button>
+              <button class="conexao_btn" id="cod_unico_video_btn">
+                <i class="fas fa-video"></i>
+                <span>Video</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="conexao_aleatoria_container">
+            <p>Aleatório:</p>
+            <div class="aleatorio_conexao_btn_container">
+              <button class="conexao_btn" id="aleatorio_chat_btn">
+                <i class="fas fa-comment"></i>
+                <span>Chat</span>
+              </button>
+              <button class="conexao_btn" id="aleatorio_video_btn">
+                <i class="fas fa-video"></i>
+                <span>Video</span>
+              </button>
+            </div>
+            <div class="aleatorio_conexao_checkbox">
+              <input type="checkbox" />
+              <p>Permitir conexões aleatórias</p>
+            </div>
+          </div>
+          <div class='dashboard_blur display_none' id='dashboard_blur'></div>
+        </div>
+      </div>
+      <div class="ligacao_container">
+        <div class="videos_container">
+          <div class="area_video" id="area_video"><img src="ultils/images/logo.png" alt="" /></div>
+          <video class="remote_video display_none" muted autoplay id="remote_video"></video>
+          <div class="local_video_container">
+            <video class="local_video" id="local_video" muted autoplay></video>
+          </div>
+
+          <div class="btn_ligacao_container display_none" id="btns_ligacao">
+            <button class="btn_ligacao" id="btn_mic">
+              <i class="fas fa-microphone"></i>
+            </button>
+            <button class="btn_ligacao" id="btn_camera">
+              <i class="fas fa-camera"></i>
+            </button>
+            <button class="btn_ligacao btn_ligacao_grande" id="btn_desliga">
+              <i class="fas fa-phone-slash"></i>
+            </button>
+            <button class="btn_ligacao" id="btn_compartilha_camera">
+              <i class="fas fa-film"></i>
+            </button>
+            <button class="btn_ligacao" id="btn_grava">
+              <i class="fas fa-record-vinyl"></i>
+            </button>
+          </div>
+          <div class="btn_ligacao_container display_none" id="finaliza_chat_btn">
+            <button class="btn_ligacao btn_ligacao_grande" id="btn_desliga">
+              <i class="fas fa-phone-slash"></i>
+            </button>
+          </div>
+          <div class="status_gravando_btn_container display_none" id="status_gravando_btn">
+            <button id="btn_pausa_gravacao">
+              <i class="fas fa-pause"></i>
+            </button>
+            <button id="btn_continuar_gravacao">
+              <i class="fas fa-play"></i>
+            </button>
+            <button id="btn_para_gravacao">Parar gravação</button>
+          </div>
+        </div>
+      </div>
+      <div class="mensagens_container">
+        <button onclick="mostrarMenssagens(this)" class="btn_show_mensagens"></button>
+
+        <div class="mensagens_container_main">
+          <div class="mensagem_container" id="mensagens_container"></div>
+          <div class="nova_mensagem_container display_none" id="nova_mensagem">
+            <input type="text" class="nova_mensagem_input" id="nova_mensagem_input" placeholder="Digite sua mensagem..." />
+            <button class="enviar_mensagem_btn" id="enviar_mensagem_btn"><i class="fas fa-paper-plane"></i></button>
+          </div>
+        </div>
+      </div>
+      <div id="alerta"></div>
+    </div>
+    <script src="./js/domEventos.js"></script>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="./js/elements.js" type="module"></script>
+    <script src="./js/constants.js" type="module"></script>
+    <script src="./js/ui.js" type="module"></script>
+    <script src="./js/wss.js" type="module"></script>
+    <script src="./js/store.js" type="module"></script>
+    <script src="./js/webRTCHandler.js" type="module"></script>
+    <script src="./js/main.js" type="module"></script>
+  </body>
+</html>

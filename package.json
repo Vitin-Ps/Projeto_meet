@@ -1,0 +1,21 @@
+{
+  "name": "projeto_meet",
+  "version": "1.0.0",
+  "description": "projeto base de socket.io usando muitas das funcionalidades que a biblioteca disponibiliza",
+  "main": "index.js",
+  "engines": {
+    "node": "20.x"
+  },
+  "scripts": {    
+    "start": "nodemon index.js",    
+    "dev": "nodemon"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "nodemon": "^3.1.4",
+    "socket.io": "^4.7.5"
+  },
+  "devDependencies": {
+    "prettier": "^3.3.2"
+  }
+}

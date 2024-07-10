@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "projeto base de socket.io usando muitas das funcionalidades que a biblioteca disponibiliza",
   "main": "index.js",
+  "type": "module", 
   "engines": {
     "node": "20.x"
   },

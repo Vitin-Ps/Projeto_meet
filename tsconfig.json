@@ -1,15 +1,14 @@
 {
-    "compilerOptions": {
-      "target": "ES6",
-      "module": "commonjs",
-      "strict": true,
-      "esModuleInterop": true,
-      "skipLibCheck": true,
-      "outDir": "./dist",
-      "removeComments": true,
-      "rootDir": "./src"
-    },
-    "include": ["src", "src/public"],
-    "exclude": ["node_modules"]
-  }
-  
+  "compilerOptions": {
+    "target": "ES6",
+    "module": "commonjs",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "outDir": "./dist",
+    "removeComments": true,
+    "rootDir": "./"
+  },
+  "include": ["index.ts", "public/**/*"],
+  "exclude": ["node_modules"]
+}

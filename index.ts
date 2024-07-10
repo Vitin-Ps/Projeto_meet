@@ -1,6 +1,7 @@
 import express, { Request, Response } from 'express';
 import http from 'http';
 import { Socket } from 'socket.io';
+import path from 'path';
 
 const PORT = process.env.PORT || 3000;
 
@@ -8,11 +9,19 @@ const app = express();
 const server = http.createServer(app);
 const io = require('socket.io')(server);
 
-app.use(express.static('public'));
+// app.use(express.static('public'));
 
-app.get('/', (req: Request, res: Response) => {
-  //   res.sendFile(__dirname + 'public/index.html');
-  res.sendFile(__dirname + '/public/index.html');
+// app.get('/', (req: Request, res: Response) => {
+//   //   res.sendFile(__dirname + 'public/index.html');
+//   res.sendFile(__dirname + '/index.html');
+// });
+
+// Configuração para servir arquivos estáticos da pasta 'public'
+app.use(express.static(path.join(__dirname, '..', 'public')));
+
+// Rota para servir o arquivo index.html na raiz do projeto
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'index.html'));
 });
 
 let peersConectados: String[] = [];

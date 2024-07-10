@@ -9,7 +9,7 @@
                 "<node_internals>/**"
             ],
             "program": "${workspaceFolder}/node_modules/nodemon/bin/nodemon.js",
-            "args": ["${workspaceFolder}/app.js"],
+            "args": ["${workspaceFolder}/index.js"],
             "restart": true
         }
     ]

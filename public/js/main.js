@@ -8,7 +8,10 @@ import * as strangerUtils from './strangerUtils.js';
 
 // Inicialização da conexão do soketio
 
-const socket = io('/');
+// const socket = io('/');
+const socket = io('https://projeto-meet-ivory.vercel.app/');
+
+
 wss.registraSocketEventos(socket);
 
 webRTCHandler.getPreviewLocal();

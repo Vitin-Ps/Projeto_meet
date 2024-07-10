@@ -10,15 +10,19 @@ body {
 
 :root {
   --cor001: #0083f6;
-  --cor002: rgba(196, 196, 196, 0.508);
-  --cor003: rgba(255, 255, 255, 0.781);
+  --cor002: #c4c4c482;
+  --cor003: #ffffffc7;
   --cor004: #ff7700;
-  --cor005: rgba(0, 0, 0, 0.2);
+  --cor005: #0000004a;
   --cor006: #fc5d5b;
   --cor007: linear-gradient(to bottom, #ff9d00, #ff8c00, #ffc800);
   --cor008: #f4f9fd;
   --cor009: linear-gradient(168.68deg, #0052c9 1.12%, #0a91db 100%);
   --cor010: #ffb700;
+  --cor011: #ffffffa6;
+  --cor012: #ffffff;
+  --cor013: #d5deeb;
+  --cor014: #545c68;
 }
 
 .main_container {
@@ -51,8 +55,8 @@ body {
 }
 
 .painel_header_container button {
-  background-color: #fff;
-  border: 2px solid #fff;
+  background-color: var(--cor012);
+  border: 2px solid var(--cor012);
   width: 15px;
   height: 15px;
   border-radius: 50%;
@@ -73,7 +77,7 @@ body {
   background-color: var(--cor002);
   border-radius: 15px;
   width: 90%;
-  color: #fff;
+  color: var(--cor012);
   padding: 0.5em;
   display: flex;
   flex-direction: column;
@@ -112,7 +116,7 @@ body {
   flex-direction: column;
   align-items: center;
   gap: 15px;
-  color: #fff;
+  color: var(--cor012);
 }
 
 .cod_unico_conexao_container input {
@@ -122,7 +126,7 @@ body {
   background-color: var(--cor002);
   border: 1px solid var(--cor003);
   border-radius: 5px;
-  color: #fff;
+  color: var(--cor012);
 }
 
 .cod_unico_conexao_container input:focus {
@@ -136,7 +140,7 @@ body {
 
 .conexao_btn {
   min-width: 120px;
-  background-color: #fff;
+  background-color: var(--cor012);
   border: 1px solid transparent;
   padding: 1em 0.5em;
   margin: 0.2em 0.5em;
@@ -159,7 +163,7 @@ body {
   flex-direction: column;
   align-items: center;
   gap: 15px;
-  color: #fff;
+  color: var(--cor012);
 }
 
 .aleatorio_conexao_btn_container {
@@ -198,7 +202,7 @@ body {
 
 .aleatorio_conexao_checkbox input[type='checkbox']::after {
   content: '\2714';
-  color: #fff;
+  color: var(--cor012);
   font-size: 20px;
   display: none;
   transition: 0.5s;
@@ -219,7 +223,6 @@ input[type='checkbox']:checked::after {
   backdrop-filter: blur(60px);
 }
 
-
 /* ---------------------------------------------------- */
 .ligacao_container {
   flex-grow: 1;
@@ -233,13 +236,16 @@ input[type='checkbox']:checked::after {
   margin: 1em;
   border-radius: 20px;
   height: 80%;
-  width: 100%;
+  max-width: 1000px;
+  min-width: 800px;
   position: relative;
+  overflow: hidden;
 }
 
 .remote_video {
   width: 100%;
   height: 100%;
+  object-fit: cover;
 }
 
 .area_video {
@@ -265,7 +271,7 @@ input[type='checkbox']:checked::after {
   width: 150px;
   height: 150px;
   border-radius: 15px;
-  border: 1px solid #fff;
+  border: 1px solid var(--cor012);
   backdrop-filter: blur(60px);
   overflow: hidden;
 }
@@ -274,11 +280,6 @@ input[type='checkbox']:checked::after {
   width: 100%;
   height: 100%;
   object-fit: cover;
-}
-
-.remote_video {
-  width: 100%;
-  height: 100%;
 }
 
 .btn_ligacao_container {
@@ -300,7 +301,7 @@ input[type='checkbox']:checked::after {
   height: 50px;
   border-radius: 50%;
   font-size: 1.5em;
-  color: #fff;
+  color: var(--cor012);
 }
 
 .btn_ligacao_grande {
@@ -331,12 +332,12 @@ input[type='checkbox']:checked::after {
 .status_gravando_btn_container button {
   background-color: transparent;
   border: none;
-  color: #fff;
+  color: var(--cor012);
   font-size: 0.9em;
 }
 
 .status_gravando_btn_container button:hover {
-  color: #ffffff94;
+  color: var(--cor012) fff94;
 }
 
 .status_gravando_btn_container button i {
@@ -355,7 +356,7 @@ input[type='checkbox']:checked::after {
 .mensagens_container_main {
   width: 100%;
   flex-grow: 1;
-  display: flex;
+  display: none;
   flex-direction: column;
   align-items: center;
   gap: 20px;
@@ -375,19 +376,47 @@ input[type='checkbox']:checked::after {
 }
 
 .mensagem_container {
+  margin-top: 1.5em;
   padding: 1em;
   width: 80%;
   height: 80%;
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.mensagem_direita_constainer {
+  background-image: var(--cor009);
+  min-width: 70px;
+  display: inline-block;
+  padding: 0.4em 0.6em;
+  font-size: 1em;
+  color: var(--cor012);
+  border-radius: 10px;
+  align-self: flex-end;
+}
+
+.mensagem_esquerda_constainer {
+  background-color: var(--cor012);
+  min-width: 70px;
+  display: inline-block;
+  padding: 0.4em 0.6em;
+  font-size: 1em;
+  color: var(--cor014);
+  border: 1px solid var(--cor013);
+  border-radius: 5px;
+  align-self: flex-start;
 }
 
 .nova_mensagem_container {
-  background-color: #fff;
+  background-color: var(--cor012);
   border: 1px solid #a0adb5;
   width: 90%;
   padding: 0.5em;
   border-radius: 15px;
-  display: none;
+  display: flex;
   gap: 10px;
 }
 
@@ -404,7 +433,7 @@ input[type='checkbox']:checked::after {
 
 .nova_mensagem_container button {
   background-image: var(--cor007);
-  color: #fff;
+  color: var(--cor012);
   width: 40px;
   height: 40px;
   font-size: 0.9em;
@@ -414,7 +443,7 @@ input[type='checkbox']:checked::after {
 }
 
 .nova_mensagem_container button:hover {
-  background-color: #fff;
+  background-color: var(--cor012);
   background-image: none;
   color: var(--cor004);
   border-color: var(--cor004);
@@ -469,7 +498,6 @@ input[type='checkbox']:checked::after {
   text-shadow: 10px 10px 20px rgba(0, 0, 0, 0.37);
 }
 
-
 .btn_alerta_container {
   height: 55px;
   width: 100%;
@@ -485,7 +513,7 @@ input[type='checkbox']:checked::after {
   border-radius: 15px;
   transition: 0.5s;
   border: none;
-  color: #FFF;
+  color: var(--cor012);
   font-size: 1.1em;
   display: flex;
   gap: 15px;
@@ -501,7 +529,7 @@ input[type='checkbox']:checked::after {
   border-radius: 15px;
   transition: 0.5s;
   border: none;
-  color: #FFF;
+  color: var(--cor012);
   font-size: 1.1em;
   display: flex;
   gap: 15px;

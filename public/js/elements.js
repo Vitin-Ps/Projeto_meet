@@ -38,6 +38,10 @@ export const getChamandoAlerta = (acaoChamadaRejeitada) => {
   alertaContent.appendChild(iconeContainer);
   alertaContent.appendChild(btnContainer);
 
+  btnDesligarLigacao.addEventListener('click', () => {
+    acaoChamadaRejeitada();
+  });
+
   return alerta;
 };
 
@@ -134,4 +138,26 @@ export const getInfoAlerta = (tituloAlerta, descricaoAlerta) => {
   alertaContent.appendChild(descricao);
 
   return alerta;
+};
+
+export const getMensagemDireita = (mensagem) => {
+  const mensagemContainer = document.createElement('div');
+  mensagemContainer.classList.add('mensagem_direita_constainer');
+  const mensagemParagrafo = document.createElement('p');
+
+  mensagemParagrafo.innerHTML = mensagem;
+  mensagemContainer.appendChild(mensagemParagrafo);
+
+  return mensagemContainer;
+};
+
+export const getMensagemEsquerda = (mensagem) => {
+  const mensagemContainer = document.createElement('div');
+  mensagemContainer.classList.add('mensagem_esquerda_constainer');
+  const mensagemParagrafo = document.createElement('p');
+
+  mensagemParagrafo.innerHTML = mensagem;
+  mensagemContainer.appendChild(mensagemParagrafo);
+
+  return mensagemContainer;
 };

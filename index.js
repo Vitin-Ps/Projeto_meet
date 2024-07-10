@@ -18,16 +18,18 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
-let peersConmectados = [];
+let peersConectados = [];
+let peersAleatoriosConectados = [];
+
 
 io.on('connection', (socket) => {
   console.log('Novo usuário conectado: ', socket.id);
-  peersConmectados.push(socket.id);
-  console.log(peersConmectados);
+  peersConectados.push(socket.id);
+  console.log(peersConectados);
 
   socket.on('pedido-chamada', (data) => {
     const { chamadorSocketId, ligacaoTipo } = data;
-    const peerConectado = peersConmectados.find((peerSokcketId) => peerSokcketId === chamadorSocketId);
+    const peerConectado = peersConectados.find((peerSokcketId) => peerSokcketId === chamadorSocketId);
 
     console.log(peerConectado);
 
@@ -50,7 +52,7 @@ io.on('connection', (socket) => {
   socket.on('pedido-chamada-resposta', (data) => {
     const { chamadorSocketId } = data;
 
-    const peerConectado = peersConmectados.find((peerSokcketId) => peerSokcketId === chamadorSocketId);
+    const peerConectado = peersConectados.find((peerSokcketId) => peerSokcketId === chamadorSocketId);
 
     if (peerConectado) {
       io.to(data.chamadorSocketId).emit('pedido-chamada-resposta', data);
@@ -60,24 +62,68 @@ io.on('connection', (socket) => {
   socket.on('sinal-webRTC', (data) => {
     const { usuarioConectadoSocketId } = data;
 
-    const peerConectado = peersConmectados.find((peerSokcketId) => peerSokcketId === usuarioConectadoSocketId);
+    const peerConectado = peersConectados.find((peerSokcketId) => peerSokcketId === usuarioConectadoSocketId);
 
     if (peerConectado) {
       io.to(usuarioConectadoSocketId).emit('sinal-webRTC', data);
     }
   });
 
+  socket.on('usuario-desconectado', (data) => {
+    const { usuarioConectadoSocketId } = data;
+
+    const peerConectado = peersConectados.find((peerSocketId) => peerSocketId === usuarioConectadoSocketId);
+
+    if (peerConectado) {
+      io.to(usuarioConectadoSocketId).emit('usuario-desconectado');
+    }
+  });
+
+  socket.on('status-conexao-aleatorio', (data) => {
+    const { status } = data;
+
+    if (status) {
+      peersAleatoriosConectados.push(socket.id);
+    } else {
+      const novosPeersAleatoriosConectados = peersAleatoriosConectados.filter((peerSocketId) => peerSocketId !== socket.id);
+
+      peersAleatoriosConectados = novosPeersAleatoriosConectados;
+    }
+    console.log('Peers Aleatórios: ', peersAleatoriosConectados);
+  });
+
+  socket.on('get-socket-id-aleatorio', () => {
+    let socketIdAleatorio;
+    const peersAleatoriosConectadosFiltrados = peersAleatoriosConectados.filter((peerKocketId) => peerKocketId !== socket.id);
+
+    if (peersAleatoriosConectadosFiltrados.length > 0) {
+      socketIdAleatorio = peersAleatoriosConectadosFiltrados[Math.floor(Math.random() * peersAleatoriosConectadosFiltrados.length)];
+    } else {
+      socketIdAleatorio = null;
+    }
+
+    const data = {
+      socketIdAleatorio,
+    };
+
+    io.to(socket.id).emit('get-socket-id-aleatorio', data);
+  });
+
   socket.on('disconnect', () => {
     console.log('Usuário desconectado');
 
-    const newPeersConectados = peersConmectados.filter((peerSokcketId) => peerSokcketId !== socket.id);
+    const newPeersConectados = peersConectados.filter((peerSokcketId) => peerSokcketId !== socket.id);
 
-    peersConmectados = newPeersConectados;
-    console.log(peersConmectados);
+    peersConectados = newPeersConectados;
+    console.log('Peers: ', peersConectados);
+
+    const newPeersAlatoriosConectados = peersAleatoriosConectados.filter((peerSokcketId) => peerSokcketId !== socket.id);
+
+    peersAleatoriosConectados = newPeersAlatoriosConectados;
+    console.log('Peers Alatórios: ', peersConectados);
   });
 });
 
-// teste
 server.listen(PORT, () => {
   console.log(`Server iniciado na porta ${PORT}\nPara acessar a aplicação, clique em http://localhost:${PORT}`);
 });

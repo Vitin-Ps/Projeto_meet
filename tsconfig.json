@@ -9,7 +9,7 @@
       "removeComments": true,
       "rootDir": "./src"
     },
-    "include": ["src", "public"],
+    "include": ["src", "src/public"],
     "exclude": ["node_modules"]
   }
   

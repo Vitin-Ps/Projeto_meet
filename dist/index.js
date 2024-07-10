@@ -10,10 +10,8 @@ const app = (0, express_1.default)();
 const server = http_1.default.createServer(app);
 const io = require('socket.io')(server);
 app.use(express_1.default.static('public'));
-const teste = __dirname;
-console.log(__dirname);
 app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/public/index.html');
+    res.sendFile(__dirname + '../public/index.html');
 });
 let peersConectados = [];
 let peersAleatoriosConectados = [];

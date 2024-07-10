@@ -10,13 +10,9 @@ const io = require('socket.io')(server);
 
 app.use(express.static('public'));
 
-const teste = __dirname;
-
-console.log(__dirname)
-
 app.get('/', (req: Request, res: Response) => {
   //   res.sendFile(__dirname + 'public/index.html');
-  res.sendFile(__dirname + '/public/index.html');
+  res.sendFile(__dirname + '../public/index.html');
 });
 
 let peersConectados: String[] = [];

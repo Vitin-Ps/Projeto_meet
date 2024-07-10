@@ -1,20 +1,23 @@
-const express = require('express');
-const http = require('http');
-const path = require('path')
+import express from 'express';
+import http from 'http';
+import path from 'path';
+import { Server } from 'socket.io';
 
 const PORT = process.env.PORT || 3000;
 
 const app = express();
 const server = http.createServer(app);
-const io = require('socket.io')(server);
+const io = new Server(server);
 
 // Servir arquivos estáticos da pasta public
+const __dirname = path.resolve();
+
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Rota para servir o arquivo index.html
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
-
 let peersConmectados = [];
 
 io.on('connection', (socket) => {

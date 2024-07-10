@@ -9,6 +9,7 @@
     "removeComments": true,
     "rootDir": "./"
   },
-  "include": ["index.ts", "public/**/*"],
+  "include": ["index.ts"],
   "exclude": ["node_modules"]
+  
 }

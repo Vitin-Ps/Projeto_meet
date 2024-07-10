@@ -8,8 +8,10 @@ import * as strangerUtils from './strangerUtils.js';
 
 // Inicialização da conexão do soketio
 
+import { io } from "https://cdn.socket.io/4.7.5/socket.io.esm.min.js";
+
 // const socket = io('/');
-const socket = io('https://projeto-meet-ivory.vercel.app/');
+const socket = io('/');
 
 
 wss.registraSocketEventos(socket);

@@ -10,9 +10,9 @@ const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
     origin: '*',
-  }
+    methods: ['GET', 'POST'],
+  },
 });
-
 
 // Servir arquivos estáticos da pasta public
 const __dirname = path.resolve();
@@ -25,7 +25,6 @@ app.get('/', (req, res) => {
 });
 let peersConectados = [];
 let peersAleatoriosConectados = [];
-
 
 io.on('connection', (socket) => {
   console.log('Novo usuário conectado: ', socket.id);
